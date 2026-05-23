@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import ReactDOM from "react-dom/client";
 
 const users = [
   { email: "admin@sunzupaystub.com", password: "admin123", role: "Super Admin", name: "Sunzu Logistics Admin" },
@@ -283,3 +284,6 @@ function Table({ headers, rows }) { return <div className="overflow-x-auto"><tab
 function DispatchView({ selectedDriver, drivers }) { return <section className="space-y-6"><Panel title="Dispatch Load to Driver"><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"><Field label="Load Number" value="L-10024" /><Select label="Assign Driver" value={String(selectedDriver.id)} options={drivers.map((d) => ({ value: String(d.id), label: d.name }))} onChange={() => {}} /><Field label="Pickup City/State" value="Knoxville, TN" /><Field label="Delivery City/State" value="Atlanta, GA" /><Field label="Pickup Date" type="datetime-local" /><Field label="Delivery Date" type="datetime-local" /><Field label="Rate Confirmation Amount" value="2500" /><Field label="Broker / Customer" value="ABC Logistics" /></div><button className="mt-5 rounded-2xl bg-blue-700 px-5 py-3 font-bold text-white">Send Load to Driver Portal</button></Panel></section>; }
 function BookkeepingView({ revenue, expenses }) { return <section className="space-y-6"><div className="grid gap-5 md:grid-cols-3"><Metric title="Income" value={money(revenue)} tone="green" /><Metric title="Expenses" value={money(expenses)} tone="red" /><Metric title="Estimated Profit" value={money(revenue - expenses)} tone="blue" /></div><Panel title="Bookkeeping Ledger"><Table headers={["Date", "Account", "Type", "Amount"]} rows={ledger.map((x) => [x.date, x.account, x.type, money(x.amount)])} /></Panel></section>; }
 function AccountingView() { return <section className="space-y-6"><Panel title="QuickBooks-Style Accounting Center"><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{["Chart of Accounts", "Profit & Loss", "Balance Sheet", "Accounts Payable", "Accounts Receivable", "1099 Contractor Reports", "Tax Summary", "Bank Reconciliation"].map((item) => <div key={item} className="rounded-3xl border bg-slate-50 p-5 font-bold shadow-sm">{item}</div>)}</div></Panel></section>; }
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <SunzuPaystubPro />
+);
